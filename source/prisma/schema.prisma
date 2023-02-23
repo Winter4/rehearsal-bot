@@ -1,0 +1,15 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  url      = env("DB_URL")
+  provider = "postgresql"
+}
+
+model Rehearsal {
+  id    Int      @id @default(autoincrement())
+  date  DateTime
+  start Int
+  end   Int
+}
