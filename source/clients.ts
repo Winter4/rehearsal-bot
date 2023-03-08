@@ -8,8 +8,8 @@ function getLoggerClient(): LoggerClient {
   return pino({});
 }
 
-type DatabaseClient = PrismaClient;
-function getDatabaseClient(config: BotConfig["database"]): DatabaseClient {
+type DatabaseClient = ReturnType<typeof getDatabaseClient>;
+function getDatabaseClient(config: BotConfig["database"]) {
   const client = config.logging
     ? new PrismaClient({ log: ["query"] })
     : new PrismaClient();
