@@ -8,8 +8,15 @@ datasource db {
 }
 
 model Rehearsal {
-  id    Int      @id @default(autoincrement())
-  date  DateTime
-  start Int
-  end   Int
+  id       Int      @id @default(autoincrement())
+  date     DateTime
+  start    Int
+  duration Int
+}
+
+model Settings {
+  id                 Int @id @default(1)
+  booking_days_ahead Int @default(7)
+  book_time_since    Int @default(9)
+  book_time_till     Int @default(20)
 }

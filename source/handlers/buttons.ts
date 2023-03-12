@@ -7,9 +7,11 @@ const buttons = new Composer<CustomContext>();
 
 buttons.hears(
   mainMenu.keys["Забронировать репетицию"],
-  (ctx: CustomContext) => {
+  async (ctx: CustomContext) => {
     return ctx.reply("Выберите день", {
-      reply_markup: generateAvailableDays(ctx.db),
+      reply_markup: await generateAvailableDays(ctx.db),
     });
   }
 );
+
+export default buttons;
