@@ -23,7 +23,7 @@ export type BotClients = {
   logger: LoggerClient;
   database: DatabaseClient;
 };
-export function getClients(config: BotConfig): BotClients {
+export async function getClients(config: BotConfig): Promise<BotClients> {
   const clients: BotClients = {
     logger: getLoggerClient(),
     database: getDatabaseClient(config.database),
@@ -32,7 +32,7 @@ export function getClients(config: BotConfig): BotClients {
   if (clients.logger) {
     clients.logger.info("✅ Logger client is ready");
   }
-  if (clients.database) {
+  if (await clients.database.$executeRaw`SELECT version()`) {
     clients.logger.info(
       "✅ DB client is ready. Get a sunbeam through your prisma!"
     );

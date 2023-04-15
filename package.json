@@ -7,7 +7,7 @@
     "dev": "npx nodemon source/bot.ts | pino-pretty --translateTime",
     "dev:up": "docker compose -f environment/docker-compose.yml up -d",
     "dev:down": "docker compose -f environment/docker-compose.yml down",
-    "dev:db:migrate": "npx prisma migrate dev --name "
+    "dev:db:migrate": "npx prisma migrate dev"
   },
   "prisma": {
     "schema": "source/prisma/schema.prisma"

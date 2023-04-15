@@ -9,8 +9,10 @@ import { CustomContext } from "./types";
 
 import middlewares from "./middlewares";
 import errorHandler from "./error-handler";
+
 import commands from "./handlers/commands";
-import buttons from "./handlers/buttons";
+import mainMenu from "./handlers/main-menu";
+import bookMenu from "./handlers/book-rehearsal-menu";
 
 async function initSettings(db: BotClients["database"]) {
   // init bot
@@ -25,7 +27,7 @@ async function main() {
   // global app config
   const config = getConfig();
   // 3rd party clients, that should be inited
-  const clients = getClients(config);
+  const clients = await getClients(config);
 
   // init bot instance
   const bot = new Bot<CustomContext>(config.telegram.botToken);
@@ -34,7 +36,8 @@ async function main() {
   bot.use(...middlewares(clients));
 
   bot.use(commands);
-  bot.use(buttons);
+  bot.use(mainMenu);
+  bot.use(bookMenu);
 
   await initSettings(clients.database);
 

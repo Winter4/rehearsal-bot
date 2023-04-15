@@ -9,14 +9,18 @@ datasource db {
 
 model Rehearsal {
   id       Int      @id @default(autoincrement())
+  user_id  String
   date     DateTime
   start    Int
   duration Int
 }
 
 model Settings {
-  id                 Int @id @default(1)
-  booking_days_ahead Int @default(7)
-  book_time_since    Int @default(9)
-  book_time_till     Int @default(20)
+  id                  Int @id @default(1)
+  booking_days_ahead  Int @default(7)
+  book_time_since     Int @default(10)
+  book_time_till      Int @default(18)
+  book_hours_offset   Int @default(4)
+  book_minutes_offset Int @default(30)
+  book_duration_limit Int @default(3)
 }
